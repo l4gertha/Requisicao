@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+
+  database:
+    container_name: fastrg_database_1
+    image: postgres
+    ports:
+      - 7779:7778
+    restart: always
+    environment:
+      - POSTGRES_USER=laracamilly
+      - POSTGRES_PASSWORD=postgres
+
+  pgadmin:
+    container_name: fastrg_pgadmin_1
+    image: dpage/pgadmin4
+    ports:
+      - "1779:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=laracamilly78@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    volumes:
+      - data-db:/var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/shm
+
+volumes:
+  data-db:
+    name: data

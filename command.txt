@@ -1,0 +1,1 @@
+docker-compose down && docker build -t laraservice . && docker-compose up --detach && docker ps -a
